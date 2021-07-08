@@ -32,7 +32,7 @@ Route::prefix('/dashboard')->group(function (){
     Route::get('/incomes/{id}/edit', [IncomeController::class, 'edit'])->name('incomes.edit');
     Route::put('/incomes/{id}', [IncomeController::class, 'update'])->name('incomes.update');
     Route::get('/incomes/{id}', [IncomeController::class, 'delete'])->name('incomes.delete');
-
+                    // Expense Controller :: CRUD
     Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
     Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
     Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
