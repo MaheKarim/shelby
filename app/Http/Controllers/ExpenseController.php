@@ -12,74 +12,47 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $input = $request->all();
+        $expenses = Expense::orderBy('id', 'desc')->paginate();
+
+        return view('expenses.index', compact('expenses', 'input'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('expenses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $expense = new Expense();
+        $expense->fill($request->all())->save();
+
+        return redirect()->route('expenses.index')->with(['_status' => 'success', '_msg' => 'Expense Successfully Created!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Expense  $expense
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Expense $expense)
+    public function edit($id)
     {
-        //
+        $expense = Expense::findOrFail($id);
+
+        return view('expenses.edit', compact('expense'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Expense  $expense
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Expense $expense)
+    public function update($id, Request $request)
     {
-        //
+        $expense = Expense::findOrFail($id);
+        $expense->update($request->all());
+
+        return redirect()->route('expenses.index')->with(['_status' => 'success', '_msg' => 'Expense Successfully Updated!']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expense  $expense
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Expense $expense)
+    public function delete($id)
     {
-        //
-    }
+        $expense = Expense::findOrFail($id);
+        $expense->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Expense  $expense
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Expense $expense)
-    {
-        //
+        return redirect()->route('expenses.index')->with(['_status' => 'fails', '_msg' => 'Expense Successfully Deleted!']);
     }
 }

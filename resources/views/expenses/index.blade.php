@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', 'All Income')
+@section('title', 'All Expense')
 
-@section('heading', 'All Income')
+@section('heading', 'All Expense')
 
 {{--@section('breadcrumbs', Breadcrumbs::render('city.index'))--}}
 
 @section('contents')
-    <form action="{{ route('incomes.index') }}" enctype="multipart/form-data" method="GET">
+    <form action="{{ route('expenses.index') }}" enctype="multipart/form-data" method="GET">
         <div class="col-12 col-md-12 col-lg-12" style="padding: 0px">
             <div class="card card-primary">
                 <div class="card-body">
@@ -35,7 +35,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                <a href="{{ route('incomes.create') }}" class="btn btn-lg btn-success">Create New +</a>
+                <a href="{{ route('expenses.create') }}" class="btn btn-lg btn-success">Create New +</a>
                 </h4>
                 <div class="card-header-form">
                     <div class="input-group">
@@ -60,17 +60,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($incomes as $income)
+                    @foreach($expenses as $expense)
 
                         <tr>
-                            <td scope="row"  data-title="#">{{ $income->id }}</td>
-                            <td  data-title="Name">{{ $income->name }}</td>
-                            <td  data-title="Amount">{{ $income->amount }}</td>
-                            <td  data-title="Date">{{ $income->date }}</td>
-                            <td  data-title="Note">{{ $income->note }}</td>
+                            <td scope="row"  data-title="#">{{ $expense->id }}</td>
+                            <td  data-title="Name">{{ $expense->name }}</td>
+                            <td  data-title="Amount">{{ $expense->amount }}</td>
+                            <td  data-title="Date">{{ $expense->date }}</td>
+                            <td  data-title="Note">{{ $expense->note }}</td>
                             <td  data-title="Actions">
-                                <a href="{{ route('incomes.edit', [$income->id]) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ route('incomes.delete', [$income->id]) }}" class="btn btn-sm btn-warning">Delete</a>
+                                <a href="{{ route('expenses.edit', [$expense->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('expenses.delete', [$expense->id]) }}" class="btn btn-sm btn-warning">Delete</a>
                             </td>
                         </tr>
                     @endforeach
@@ -82,12 +82,12 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <div class="dataTables_info" id="table-1_info" role="status" aria-live="polite">
-                            Showing {{ $incomes->firstItem() }} to {{ $incomes->lastItem() }} of {{ $incomes->total() }} entries
+                            Showing {{ $expenses->firstItem() }} to {{ $expenses->lastItem() }} of {{ $expenses->total() }} entries
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-8">
                         <div class="float-right">
-                            {{ $incomes->appends(request()->except('page'))->links() }}
+                            {{ $expenses->appends(request()->except('page'))->links() }}
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('title', 'Create Income')
+@section('title', 'Create Expense')
 
-@section('heading', 'Create Income')
+@section('heading', 'Create Expense')
 
 @section('heading_buttons')
-    <a href="{{route('incomes.index')}}" class="btn btn-primary">All Income </a>
+    <a href="{{route('expenses.index')}}" class="btn btn-primary">All Expense</a>
 @endsection
 {{--@section('breadcrumbs', Breadcrumbs::render('domains.create'))--}}
 
@@ -13,9 +13,9 @@
 @section('contents')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('incomes.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('expenses.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                @include('incomes.form')
+                @include('expenses.form')
                 <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>
