@@ -1,0 +1,11 @@
+<?php
+
+
+namespace App\Enums;
+
+
+interface Role
+{
+    const ADMIN = 1;
+    const TENANT = 2;
+}
