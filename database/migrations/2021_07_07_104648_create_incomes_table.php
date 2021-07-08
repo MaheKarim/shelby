@@ -19,7 +19,7 @@ class CreateIncomesTable extends Migration
             $table->decimal('amount');
             $table->string('date');
             $table->text('note');
-            $table->text('file');
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

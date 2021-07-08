@@ -7,79 +7,46 @@ use Illuminate\Http\Request;
 
 class IncomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $input = $request->all();
+        $incomes = Income::orderBy('id', 'desc')->paginate();
+        return view('incomes.index', compact('incomes', 'input'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('incomes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $income = new Income();
+        $income->fill($request->all())->save();
+
+        return redirect()->route('incomes.index')->with(['_status' => 'success', '_msg' => 'Income Successfully Created!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Income  $income
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Income $income)
+    public function edit($id)
     {
-        //
+        $income = Income::findOrFail($id);
+
+        return view('incomes.edit', compact('income'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Income  $income
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Income $income)
+    public function update($id, Request $request)
     {
-        //
+        $income = Income::findOrFail($id);
+        $income->update($request->all());
+
+        return redirect()->route('incomes.index')->with(['_status' => 'success', '_msg' => 'Income Successfully Updated!']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Income  $income
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Income $income)
+    public function delete($id)
     {
-        //
-    }
+        $income = Income::findOrFail($id);
+        $income->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Income  $income
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Income $income)
-    {
-        //
+        return back();
     }
 }

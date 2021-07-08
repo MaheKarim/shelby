@@ -8,6 +8,10 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dream Shelby</li>
+
+            <li class="active">
+                <a href="{{ route('incomes.index') }}"><i class="fas fa-fire"></i><span>Income</span></a>
+            </li>
         </ul>
     </aside>
 </div>
