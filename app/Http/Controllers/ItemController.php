@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Item;
+use App\Http\Requests\ItemRequest;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -18,8 +19,11 @@ class ItemController extends Controller
         return view('items.create');
     }
 
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
+//        $request->validate([
+//            'name' => 'required|unique:items|max:255|min:4',
+//        ]);
         $item = new Item();
         $item->fill($request->all())->save();
 
