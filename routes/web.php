@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -39,4 +40,11 @@ Route::prefix('/dashboard')->group(function (){
     Route::get('/expenses/{id}/edit', [ExpenseController::class, 'edit'])->name('expenses.edit');
     Route::put('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update');
     Route::get('/expenses/{id}', [ExpenseController::class, 'delete'])->name('expenses.delete');
+    // Item Controller
+    Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+    Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
+    Route::get('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 });
