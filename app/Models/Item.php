@@ -13,6 +13,7 @@ class Item extends Model
         'name',
         'quantity',
         'description',
+        'status',
     ];
 
 }

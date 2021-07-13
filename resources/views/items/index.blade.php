@@ -55,6 +55,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Date</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -67,6 +68,7 @@
                             <td  data-title="Name">{{ $item->name }}</td>
                             <td  data-title="Amount">{{ $item->quantity }}</td>
                             <td  data-title="Date">{{ $item->description }}</td>
+                            <td  data-title="Date">{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td  data-title="Note">{{ $item->created_at }}</td>
                             <td  data-title="Actions">
                                 <a href="{{ route('items.edit', [$item->id] ) }}" class="btn btn-sm btn-info">Edit</a>

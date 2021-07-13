@@ -16,6 +16,16 @@
     </div>
 </div>
 
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+           @foreach(trans('item.status') as $key => $value)
+                <option value="{{$key}}" {{(old('status') == $key || data_get($item, 'status') == $key) ? 'selected':'' }}> {{ $value }} </option>
+
+            @endforeach
+        </select>
+    </div>
+
 
 
 

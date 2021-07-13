@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->mediumText('description')->nullable();
+            $table->tinyInteger('status')->default(\App\Enums\ItemStatus::ACTIVE);
             $table->timestamps();
         });
     }
