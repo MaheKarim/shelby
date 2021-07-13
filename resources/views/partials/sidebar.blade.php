@@ -15,6 +15,9 @@
             <li class="active">
                 <a href="{{ route('expenses.index') }}"><i class="fas fa-lemon"></i><span>Expense</span></a>
             </li>
+            <li class="active">
+                <a href="{{ route('items.index') }}"><i class="fas fa-code"></i><span>Items</span></a>
+            </li>
         </ul>
     </aside>
 </div>
